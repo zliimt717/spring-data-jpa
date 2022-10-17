@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,7 +19,7 @@ import javax.persistence.ManyToMany;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -40,6 +41,19 @@ public class Subject {
 
     public void enrolledStudent(Student student) {
         enrolledStudent.add(student);
+    }
+
+    public Long getSubId() {
+        return subId;
+    }
+
+    public String getSubName() {
+        return subName;
+    }
+
+    @JsonManagedReference
+    public Set<Student> getEnrolledStudent() {
+        return enrolledStudent;
     }
 
 }
