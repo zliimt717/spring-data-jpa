@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -29,7 +30,7 @@ public class Student {
     private String studentName;
 
     @ManyToMany(mappedBy = "enrolledStudent")
-    @JsonIgnore
+    @JsonBackReference
     private Set<Subject> subjects=new HashSet<>();
 
 
