@@ -30,7 +30,8 @@ public class Student {
     private String studentName;
 
     @ManyToMany(mappedBy = "enrolledStudent")
-    @JsonBackReference
+   // @JsonBackReference
+    @JsonIgnore
     private Set<Subject> subjects=new HashSet<>();
 
 
