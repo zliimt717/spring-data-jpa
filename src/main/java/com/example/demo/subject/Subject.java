@@ -51,7 +51,7 @@ public class Subject {
         return subName;
     }
 
-    @JsonManagedReference
+    //@JsonManagedReference
     public Set<Student> getEnrolledStudent() {
         return enrolledStudent;
     }
