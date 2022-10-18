@@ -2,6 +2,7 @@ package com.example.demo.subject;
 
 import com.example.demo.student.Student;
 import com.example.demo.student.StudentRepository;
+import com.example.demo.teacher.Teacher;
 import com.example.demo.teacher.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,8 @@ public class SubjectController {
         this.subjectRepository = subjectRepository;
     }
 
-    //private TeacherRepository teacherRepository;
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     @Autowired
     private StudentRepository studentRepository;
@@ -49,6 +51,19 @@ public class SubjectController {
         Subject subject=subjectRepository.findById(subjectId).get();
         Student student=studentRepository.findById(studentId).get();
         subject.enrolledStudent(student);
+
+        return subjectRepository.save(subject);
+    }
+
+    @PutMapping("/{subjectId}/teacher/{teacherId}")
+    public Subject assignTeachertoSubject(
+            @PathVariable Long subjectId,
+            @PathVariable Long teacherId
+
+    ){
+        Subject subject=subjectRepository.findById(subjectId).get();
+        Teacher teacher=teacherRepository.findById(teacherId).get();
+        subject.setTeacher(teacher);
 
         return subjectRepository.save(subject);
     }
